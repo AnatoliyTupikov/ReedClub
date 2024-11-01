@@ -33,7 +33,7 @@
         //    this.title = title;
         //    this.author = author;
         //    this.releaseyear = releaseyear;
-        //    this.pages = pages;
+        //    this.pages = pages;xcvxcv
         //}
         static Book() { rentCost = 10; }
         public Book() {}
