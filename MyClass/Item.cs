@@ -8,16 +8,29 @@ namespace MyClass
 {
     internal class Item
     {
+
         private long invNumber;
         protected bool availability;
+
+        public Item() { availability = true; }   
+        public Item(long invNumber, bool availability) 
+        {
+            this.invNumber = invNumber;
+            this.availability = availability;
+        }
 
         public bool IsAvailable() => availability;
         public long GetInvNumber() => invNumber;
 
         public void Take() => availability = false;
 
-        public void Return() => availability = true;
+        virtual public void Return() => availability = true;
 
-        virtual public void Show() => Console.WriteLine($"State: \nInventory number: {invNumber}, Availability: {availability}");
+        public void Show() => Console.WriteLine($"State: \nInventory number: {invNumber}, Availability: {availability}");
+
+        public void TakeItem()
+        {
+            if (IsAvailable()) Take();
+        }
     }
 }

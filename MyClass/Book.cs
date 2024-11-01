@@ -7,7 +7,7 @@
         private string? publisher;
         private int releaseyear;
         private int pages;
-        new private string? invNumber;
+        private bool returnExp;
 
         private static decimal rentCost = 9;
         public int Releaseyear
@@ -37,7 +37,7 @@
         //}
         static Book() { rentCost = 10; }
         public Book() {}
-        public Book(string title, string author, string publisher, int releaseyear, int pages) 
+        public Book(long invNumber, bool availability, string title, string author, string publisher, int releaseyear, int pages) : base(invNumber, availability)
         {
             this.publisher = publisher;
             this.title = title;
@@ -48,9 +48,10 @@
 
         public static void SetRentCost (decimal am) { Book.rentCost = am; }
 
-        override public void Show() 
+        new public void Show()
         {
             Console.WriteLine($"Book title: \"{this.title ?? "Unknown"}\" \nAuthor: \"{this.author ?? "Unknown"}\" \nPublisher: \"{this.publisher ?? "Unknown"}\" \nRelease year: {this.releaseyear} \nPage amount: {this.pages} \nRent Cost per day: \"{Book.rentCost}\"\n");
+            base.Show();
         }
 
         public decimal CostofRent(int days) => Book.rentCost * days;
@@ -63,6 +64,16 @@
             else return -1;
         }
 
-        
+        public void ReturnSrok() => this.returnExp = true;
+
+        public override void Return()
+        {
+            if (returnExp) base.availability = true;
+            else base.availability = false;
+        }
+
+
+
+
     }
 }
